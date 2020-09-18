@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,17 +30,18 @@ Gson gson;
 List<ModelCategoriesData> categoriesList= new ArrayList<>();
 AdapterCategories adapterCategories;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         textMenu=findViewById(R.id.textMenu);
         textIndex=findViewById(R.id.textIndex);
         textCategories=findViewById(R.id.textCategories);
         gson= new GsonBuilder().create();
         recycleCategories=findViewById(R.id.recyclerMenu);
         recycleCategories.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
-
         getCategories();
 
 
