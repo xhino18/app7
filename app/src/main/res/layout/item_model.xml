@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="#14000000">
+
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="75dp"
+        android:layout_height="58dp">
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/nameItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/image"
+        android:layout_toRightOf="@+id/image"
+        android:paddingLeft="10dp"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        android:textColor="#000000">
+
+    </TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/descriptionItem"
+        android:layout_below="@+id/nameItem"
+        android:layout_toEndOf="@+id/image"
+        android:layout_toRightOf="@+id/image"
+        android:paddingLeft="10dp"
+        android:maxLines="1"
+        android:textStyle="italic"
+        android:textColor="#000000">
+
+    </TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/priceItem"
+        android:layout_below="@+id/descriptionItem"
+        android:layout_toEndOf="@+id/image"
+        android:layout_toRightOf="@+id/image"
+        android:paddingLeft="10dp"
+        android:textColor="#000000">
+
+    </TextView>
+
+
+
+</RelativeLayout>
