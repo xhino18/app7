@@ -30,13 +30,26 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="2dp"
-                android:layout_marginEnd="5dp"
-                android:layout_alignParentRight="true"
+                android:layout_toEndOf="@+id/textBackButton"
+                android:layout_toRightOf="@+id/textBackButton"
+                android:paddingLeft="270dp"
                 android:focusable="false"
                 android:iconifiedByDefault="true"
                 android:queryHint="Search">
 
             </SearchView>
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerInParent="true"
+            android:id="@+id/imageCart"
+            android:layout_alignParentRight="true"
+            android:layout_toEndOf="@+id/search_view"
+            android:layout_toRightOf="@+id/search_view"
+            android:src="@drawable/ic_shopping_cart">
+
+        </ImageView>
+
 
 
     </RelativeLayout>

@@ -79,5 +79,6 @@ AdapterCategories adapterCategories;
         Intent intent=new Intent(this,ActivityProducts.class);
         intent.putExtra("cat_id",data.getId());
         startActivity(intent);
+
     }
 }
