@@ -4,25 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.app7.RoomDatabase.MakeOrderClicked;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +26,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ActivityProducts extends AppCompatActivity {
+public class ActivityProducts extends AppCompatActivity implements MakeOrderClicked {
     Gson gson;
-    TextView nameItem, descriptionItem, priceItem, textBackButton;
+    TextView nameItem, descriptionItem, priceItem, textBackButton,textQuantity;
     ImageView imageView, imageError, imageCart;
     List<ModelItemData> itemList = new ArrayList<>();
     AdapterItem adapterItem;
@@ -57,6 +52,7 @@ public class ActivityProducts extends AppCompatActivity {
         nameItem = findViewById(R.id.nameItem);
         descriptionItem = findViewById(R.id.descriptionItem);
         priceItem = findViewById(R.id.priceItem);
+        textQuantity=findViewById(R.id.textQuantity);
         imageView = findViewById(R.id.image);
         imageError = findViewById(R.id.imageError);
         imageCart = findViewById(R.id.imageCart);
@@ -155,4 +151,38 @@ public class ActivityProducts extends AppCompatActivity {
 
         super.onBackPressed();
     }
-}
+
+    @Override
+    public void productClicked(ModelItemData itemData) {
+       OrderItemModel orderItemModel= parseProductToOrderItem(itemData);
+        boolean found = false;
+        for (OrderItemModel basketOrderItem : ItemDatabase.getInstance(this).orderItemDao().getAllItems()) {
+            if (basketOrderItem.getId().equals(orderItemModel.getId())) {
+                found = true;
+                basketOrderItem.incrementQuantity();
+                ItemDatabase.getInstance(this).orderItemDao().update(basketOrderItem);
+                Toast.makeText(this, "Quantity ++", Toast.LENGTH_SHORT).show();
+                break;
+            }
+        }
+        if (!found) {
+            ItemDatabase.getInstance(this).orderItemDao().insert(orderItemModel);
+            Toast.makeText(this, "U shtuaaaa", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+
+    public OrderItemModel parseProductToOrderItem(ModelItemData data){
+        return new OrderItemModel(
+               new Long(data.getId()),
+                data.getId(),
+                data.getName(),
+                data.getDescription(),
+                data.getImage(),
+                data.getPrice(),
+                1
+
+        );
+        }
+    }

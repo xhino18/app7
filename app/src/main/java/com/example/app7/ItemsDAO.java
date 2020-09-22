@@ -14,18 +14,18 @@ import java.util.List;
 public interface ItemsDAO {
 
     @Insert
-    void insert(Items items);
+    void insert(OrderItemModel items);
 
-    @Delete
-    void delete(Items items);
 
     @Update
-    void update(Items items);
+    void update(OrderItemModel items);
 
-    @Query("DELETE FROM SelectedItems_table")
+    @Query("DELETE FROM OrderItem")
     void deleteAll();
 
-    @Query("SELECT * FROM SelectedItems_table")
-    LiveData<List<Items>> getAllItems();
+    @Query("SELECT * FROM OrderItem ORDER BY id")
+    List<OrderItemModel> getAllItems();
 
+    @Delete
+    void delete(OrderItemModel itemModel);
 }

@@ -9,9 +9,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.app7.RoomDatabase.AddRemoveQuantityClickInterfce;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -22,10 +24,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ViewDialog {
+public class ViewDialog implements AddRemoveQuantityClickInterfce {
     Gson gson;
-    List <ModelItemData>list=new ArrayList<>();
-    AdapterItem adapterItem;
+    List <OrderItemModel>list=new ArrayList<>();
+    AdapterItemsSelected adapterItem;
     RecyclerView recyclerView;
     Context context;
 
@@ -38,6 +40,7 @@ public class ViewDialog {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
         dialog.setContentView(R.layout.custom_cart_items);
+        list=ItemDatabase.getInstance(context).orderItemDao().getAllItems();
 
             recyclerView=(RecyclerView) dialog.findViewById(R.id.recyclerCartItem);
             recyclerView.setLayoutManager(new LinearLayoutManager(activity,RecyclerView.VERTICAL,false));
@@ -50,42 +53,26 @@ public class ViewDialog {
                 dialog.dismiss();
             }
         });
-        getItem(7);
+
 
         dialog.show();
 
+        adapterItem = new AdapterItemsSelected(context,list);
+        recyclerView.setAdapter(adapterItem);
+
     }
-    private void getItem(int id) {
-        gson=new GsonBuilder().create();
-        //loading();
-        API apiClient = ApiClient.createApiNoToken();
-        Call<ModelItem> call = apiClient.getItem(id);
-        call.enqueue(new Callback<ModelItem>() {
-            @Override
-            public void onResponse(Call<ModelItem> call, Response<ModelItem> response) {
-               // dialog.dismiss();
-                if (!gson.toJson(response.body()).equalsIgnoreCase("null")) {
-                    if (!response.body().getError()) {
-                        list.addAll(response.body().getData());
-                            adapterItem = new AdapterItem(context, list);
-                        recyclerView.setAdapter(adapterItem);
+     public void addClicked(ModelItemData data){
 
 
-                    } else {
-                        Toast.makeText(context, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
-                }
-            }
+     }
 
+    @Override
+    public void removeClicked(OrderItemModel data) {
 
-            @Override
-            public void onFailure(Call<ModelItem> call, Throwable t) {
-
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
+    @Override
+    public void addClicked(OrderItemModel data) {
+
+    }
 }

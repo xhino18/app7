@@ -43,7 +43,7 @@
 
     <TextView
         android:id="@+id/priceItem"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/descriptionItem"
         android:layout_toEndOf="@+id/image"
@@ -52,6 +52,39 @@
         android:textColor="#000000">
 
     </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:id="@+id/textQuantity"
+        android:text="1"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="23dp"
+        android:layout_centerVertical="true"
+        android:textColor="#000000">
+
+    </TextView>
+
+    <ImageView
+        android:id="@+id/image_add_quantity"
+        android:layout_width="11dp"
+        android:layout_height="11dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="2dp"
+        android:src="@drawable/ic_add">
+
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/image_remove_quantity"
+        android:layout_width="12dp"
+        android:layout_height="14dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="39dp"
+        android:src="@drawable/ic_substract">
+
+    </ImageView>
 
 
-    </RelativeLayout>
+</RelativeLayout>

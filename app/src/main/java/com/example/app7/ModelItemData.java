@@ -25,6 +25,7 @@ public class ModelItemData {
     @SerializedName("ingredients")
     @Expose
     private String ingredients;
+
     @SerializedName("suggestions")
     @Expose
     private List<Object> suggestions = null;
@@ -76,6 +77,7 @@ public class ModelItemData {
     public void setIngredients(String ingredients) {
         this.ingredients = ingredients;
     }
+
 
     public List<Object> getSuggestions() {
         return suggestions;
