@@ -3,6 +3,7 @@ package com.example.app7;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -48,11 +49,21 @@ public class ViewDialog implements AddRemoveQuantityClickInterfce {
         recyclerView.setLayoutManager(new LinearLayoutManager(activity, RecyclerView.VERTICAL, false));
 
 
+        Button buttonCancel = (Button) dialog.findViewById(R.id.buttonCancel);
+        buttonCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
         Button buttonConfirm = (Button) dialog.findViewById(R.id.buttonConfirm);
         buttonConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.dismiss();
+             Intent intent= new Intent(context,ActivityPayment.class);
+             context.startActivity(intent);
+
+
             }
         });
 

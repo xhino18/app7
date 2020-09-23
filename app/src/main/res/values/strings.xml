@@ -3,4 +3,6 @@
     <string name="textMenu">Menu</string>
     <string name="restorantiIm">Restoranti Im</string>
     <string name="confirm">Confirm</string>
+    <string name="buttonCancel">Cancel</string>
+    <string name="text">"Totali : "</string>
 </resources>
