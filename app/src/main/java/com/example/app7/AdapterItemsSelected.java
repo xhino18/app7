@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -20,12 +21,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterItemsSelected extends RecyclerView.Adapter<AdapterItemsSelected.ViewHolder> {
-    Context context;
-    private List<OrderItemModel> items = new ArrayList<>();
+    LifecycleOwner owner;
+    ViewDialog context;
+    private List<OrderItemModel> items ;
+    Context newContext;
 
-    public AdapterItemsSelected(Context context, List<OrderItemModel> items) {
+    public AdapterItemsSelected(LifecycleOwner owner,ViewDialog context, List<OrderItemModel> items,  Context newContext) {
         this.context = context;
         this.items = items;
+        this.owner = owner;
+        this.newContext=newContext;
     }
 
     @NonNull
@@ -37,7 +42,7 @@ public class AdapterItemsSelected extends RecyclerView.Adapter<AdapterItemsSelec
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         holder.nameItem.setText(items.get(position).getName());
         holder.descriptionItem.setText(Html.fromHtml(items.get(position).getDescription()));
         holder.priceItem.setText(items.get(position).getPrice().toString());
@@ -45,16 +50,17 @@ public class AdapterItemsSelected extends RecyclerView.Adapter<AdapterItemsSelec
         holder.image_add_quantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((AddRemoveQuantityClickInterfce)context).addClicked(items.get(position));
+                ((AddRemoveQuantityClickInterfce)context).addClicked(items.get(position),position);
+
             }
         });
         holder.image_remove_quantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((AddRemoveQuantityClickInterfce)context).removeClicked(items.get(position));
+                ((AddRemoveQuantityClickInterfce)context).removeClicked(items.get(position),position);
             }
         });
-        Glide.with(context).load("https://freedesignfile.com/upload/2016/11/Italian-pasta-combinations-HD-picture.jpg").into(holder.image);
+        Glide.with(newContext).load("https://freedesignfile.com/upload/2016/11/Italian-pasta-combinations-HD-picture.jpg").into(holder.image);
 
 
     }
