@@ -1,9 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityPayment">
+    tools:context=".ActivityPayment"
+    android:background="@drawable/paymentbackground">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:id="@+id/linear3">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textMenuPaymant"
+            android:text="@string/menuPayment"
+            android:textSize="40dp"
+            android:textColor="#000000"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="100dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="15dp"
+        android:layout_below="@+id/linear3"
+        android:id="@+id/linear"
+
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/paymentNamer"
+            style="@android:style/Widget.Holo.Light.AutoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="#140C0C0C"
+            android:hint="Emer"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            android:padding="5dp">
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/paymentLastname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="#140C0C0C"
+            android:hint="Mbiemer"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            android:padding="5dp">
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/paymentEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="#140C0C0C"
+            android:hint="Email"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            android:padding="5dp">
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/paymentCel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="#140C0C0C"
+            android:hint="Tel"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            android:padding="5dp">
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/paymentAddressr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="#140C0C0C"
+            android:hint="Email"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            android:padding="5dp">
+
+        </EditText>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linear2"
+        android:layout_below="@+id/linear">
+
+        <Button
+            android:id="@+id/buttonConfimPayment"
+            style="@android:style/Widget.Material.Light.Button.Toggle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginRight="40dp"
+            android:text="@string/buttonConfirmPayment">
+
+        </Button>
+
+    </LinearLayout>
+
+
+
+
+
+
+    </RelativeLayout>

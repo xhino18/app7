@@ -26,6 +26,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.app7.ActivityProducts.cardView_items_selected;
+import static com.example.app7.ActivityProducts.textBasketQuantity;
+
 public class ViewDialog implements AddRemoveQuantityClickInterfce {
     Gson gson;
     List<OrderItemModel> list = new ArrayList<>();
@@ -33,20 +36,24 @@ public class ViewDialog implements AddRemoveQuantityClickInterfce {
     LifecycleOwner owner;
     RecyclerView recyclerView;
     Context context;
+    TextView textTotali;
+    Dialog dialog;
 
     public ViewDialog(Context context) {
         this.context = context;
     }
 
     public void showDialog(Activity activity, String msg) {
-        final Dialog dialog = new Dialog(activity);
+         dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
         dialog.setContentView(R.layout.custom_cart_items);
         list = ItemDatabase.getInstance(context).orderItemDao().getAllItems();
-
+        getTotalQuantity();
         recyclerView = (RecyclerView) dialog.findViewById(R.id.recyclerCartItem);
         recyclerView.setLayoutManager(new LinearLayoutManager(activity, RecyclerView.VERTICAL, false));
+
+        textTotali=dialog.findViewById(R.id.textTotali);
 
 
         Button buttonCancel = (Button) dialog.findViewById(R.id.buttonCancel);
@@ -66,9 +73,9 @@ public class ViewDialog implements AddRemoveQuantityClickInterfce {
 
             }
         });
-
-
+        updateTotal();
         dialog.show();
+        getTotalQuantity();
 
         adapterItem = new AdapterItemsSelected(owner,this, list,context);
         recyclerView.setAdapter(adapterItem);
@@ -79,8 +86,9 @@ public class ViewDialog implements AddRemoveQuantityClickInterfce {
     public void addClicked(OrderItemModel data,int position) {
         updateOrderItem(list.get(position), 1);
         adapterItem.notifyDataSetChanged();
-
         recyclerView.setAdapter(adapterItem);
+        updateTotal();
+        getTotalQuantity();
 
 
     }
@@ -88,21 +96,31 @@ public class ViewDialog implements AddRemoveQuantityClickInterfce {
     @Override
     public void removeClicked(OrderItemModel data,int position) {
         if (list.get(position).getQuantity() == 1) {
-            if (list.size() == 1) {
+            if (list.size() == 0) {
                 OrderItemModel orderItem = list.get(position);
                 ItemDatabase.getInstance(context).orderItemDao().delete(orderItem);
+                adapterItem.notifyDataSetChanged();
+                recyclerView.setAdapter(adapterItem);
+                updateTotal();
+                getTotalQuantity();
+
             } else {
                 OrderItemModel orderItem = list.get(position);
                 ItemDatabase.getInstance(context).orderItemDao().delete(orderItem);
                 list.remove(position);
                 adapterItem.notifyDataSetChanged();
                 recyclerView.setAdapter(adapterItem);
+                updateTotal();
+                getTotalQuantity();
             }
         } else {
             updateOrderItem(list.get(position), -1);
             adapterItem.notifyDataSetChanged();
 
             recyclerView.setAdapter(adapterItem);
+            updateTotal();
+            getTotalQuantity();
+
         }
 
     }
@@ -114,7 +132,7 @@ public class ViewDialog implements AddRemoveQuantityClickInterfce {
         ItemDatabase.getInstance(context).orderItemDao().update(orderItem);
         adapterItem = new AdapterItemsSelected(owner, this, list,context);
         recyclerView.setAdapter(adapterItem);
-        //updateTotal();
+
     }
 
     private int orderItemExistsOnBasket(OrderItemModel productData) {
@@ -125,6 +143,27 @@ public class ViewDialog implements AddRemoveQuantityClickInterfce {
         }
         return -1;
     }
+
+    private int updateTotal(){
+    int total=0;
+        for (int i =0;i<list.size();i++){
+            total=total +list.get(i).getPrice()*list.get(i).getQuantity();
+        }
+        textTotali.setText(total+" Leke");
+        return total;
+
+    }
+    private void getTotalQuantity(){
+        int totalquantity=0;
+        for (int i =0;i<list.size();i++){
+        totalquantity=totalquantity+ list.get(i).getQuantity();
+        }
+
+        textBasketQuantity.setText(totalquantity+"");
+
+
+    }
+
 
 
 }

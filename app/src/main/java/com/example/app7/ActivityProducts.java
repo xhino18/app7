@@ -1,6 +1,7 @@
 package com.example.app7;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,13 +29,16 @@ import retrofit2.Response;
 
 public class ActivityProducts extends AppCompatActivity implements MakeOrderClicked {
     Gson gson;
-    TextView nameItem, descriptionItem, priceItem, textBackButton,textQuantity;
+    TextView nameItem, descriptionItem, priceItem, textBackButton;
+    public static TextView textBasketQuantity;
     ImageView imageView, imageError, imageCart;
     List<ModelItemData> itemList = new ArrayList<>();
+    List<OrderItemModel> list = new ArrayList<>();
     AdapterItem adapterItem;
     RecyclerView recyclerItem;
     SearchView search_view;
     ProgressDialog dialog;
+    public static CardView cardView_items_selected;
 
 
     @Override
@@ -52,13 +56,16 @@ public class ActivityProducts extends AppCompatActivity implements MakeOrderClic
         nameItem = findViewById(R.id.nameItem);
         descriptionItem = findViewById(R.id.descriptionItem);
         priceItem = findViewById(R.id.priceItem);
-        textQuantity=findViewById(R.id.textQuantity);
         imageView = findViewById(R.id.image);
         imageError = findViewById(R.id.imageError);
         imageCart = findViewById(R.id.imageCart);
+        cardView_items_selected=findViewById(R.id.cardView_items_selected);
         gson = new GsonBuilder().create();
         dialog = new ProgressDialog(ActivityProducts.this);
         textBackButton = findViewById(R.id.textBackButton);
+        textBasketQuantity=findViewById(R.id.textBasketQuantity);
+        getTotalQuantity();
+
         textBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +87,10 @@ public class ActivityProducts extends AppCompatActivity implements MakeOrderClic
         });
         int catId = getIntent().getIntExtra("cat_id", -1);
         getItem(catId);
+        int quantity=getIntent().getIntExtra("key",0);
+        System.out.println("Quantity controller "+quantity);
+
+
 
         imageCart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,13 +172,17 @@ public class ActivityProducts extends AppCompatActivity implements MakeOrderClic
                 found = true;
                 basketOrderItem.incrementQuantity();
                 ItemDatabase.getInstance(this).orderItemDao().update(basketOrderItem);
-                Toast.makeText(this, "Quantity ++", Toast.LENGTH_SHORT).show();
+                getTotalQuantity();
+                Toast.makeText(this, "Produkti u shtua", Toast.LENGTH_SHORT).show();
                 break;
+
             }
         }
         if (!found) {
             ItemDatabase.getInstance(this).orderItemDao().insert(orderItemModel);
-            Toast.makeText(this, "U shtuaaaa", Toast.LENGTH_SHORT).show();
+            getTotalQuantity();
+            Toast.makeText(this, "Produkti u shtua", Toast.LENGTH_SHORT).show();
+
         }
 
 
@@ -185,4 +200,16 @@ public class ActivityProducts extends AppCompatActivity implements MakeOrderClic
 
         );
         }
+    private void getTotalQuantity(){
+        int totalquantity=0;
+        list = ItemDatabase.getInstance(this).orderItemDao().getAllItems();
+        for (int i =0;i<list.size();i++){
+            totalquantity=totalquantity+ list.get(i).getQuantity();
+        }
+        textBasketQuantity.setText(totalquantity+"");
+        System.out.println("Quantity controler "+totalquantity);
     }
+
+
+
+}

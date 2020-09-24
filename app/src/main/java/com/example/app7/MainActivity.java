@@ -25,7 +25,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements ItemClickInterface{
 RecyclerView recycleCategories;
-TextView textIndex,textCategories,textMenu;
+TextView textIndex,textCategories;
 Gson gson;
 List<ModelCategoriesData> categoriesList= new ArrayList<>();
 AdapterCategories adapterCategories;
@@ -36,7 +36,6 @@ AdapterCategories adapterCategories;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        textMenu=findViewById(R.id.textMenu);
         textIndex=findViewById(R.id.textIndex);
         textCategories=findViewById(R.id.textCategories);
         gson= new GsonBuilder().create();

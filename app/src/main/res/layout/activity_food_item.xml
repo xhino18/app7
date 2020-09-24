@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ActivityProducts"
-    android:background="@drawable/background">
+    android:background="@drawable/paymentbackground">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="56dp"
         android:background="#BF000000">
 
         <TextView
@@ -41,13 +41,37 @@
 
         <ImageView
             android:id="@+id/imageCart"
-            android:layout_width="43dp"
-            android:layout_height="26dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="10dp"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
             android:src="@drawable/ic_shopping_cart">
 
         </ImageView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:id="@+id/cardView_items_selected"
+            android:layout_alignParentRight="true"
+            android:layout_margin="6dp"
+            app:cardCornerRadius="12dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FF0000">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textBasketQuantity"
+            android:textSize="13dp"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"
+            android:textColor="#FFFFFF" />
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
 
     </RelativeLayout>
     <ImageView
@@ -61,12 +85,13 @@
         android:src="@drawable/backgrounderror">
 
     </ImageView>
+
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_margin="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/recyclerItem"
-        android:layout_below="@+id/relativeLayout">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_marginBottom="5dp">
 
     </androidx.recyclerview.widget.RecyclerView>
 

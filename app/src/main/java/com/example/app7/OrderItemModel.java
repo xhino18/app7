@@ -38,6 +38,7 @@ public class OrderItemModel {
     @ColumnInfo(name = "quantity")
     private Integer quantity;
 
+
     public OrderItemModel(Long unique_id, @NonNull Integer id, String name,String description, String urlImage, Integer price, Integer quantity) {
         this.unique_id = unique_id;
         this.id = id;

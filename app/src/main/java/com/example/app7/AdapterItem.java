@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -42,8 +43,8 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolder> {
 
         holder.add_product_Iv.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                ((MakeOrderClicked)context).productClicked(itemList.get(position));
+            public void onClick(View v) {   ((MakeOrderClicked)context).productClicked(itemList.get(position));
+
             }
         });
 
@@ -58,6 +59,7 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView nameItem, descriptionItem, priceItem;
         ImageView image,add_product_Iv;
+        CardView cardView_items_selected;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             image=(ImageView) itemView.findViewById(R.id.image);
@@ -65,7 +67,7 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolder> {
             descriptionItem = (TextView) itemView.findViewById(R.id.descriptionItem);
             priceItem = (TextView) itemView.findViewById(R.id.priceItem);
             add_product_Iv=(ImageView) itemView.findViewById(R.id.add_product_Iv);
-
+            cardView_items_selected=(CardView)itemView.findViewById(R.id.cardView_items_selected);
 
         }
     }

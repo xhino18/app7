@@ -45,7 +45,7 @@ public class AdapterItemsSelected extends RecyclerView.Adapter<AdapterItemsSelec
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         holder.nameItem.setText(items.get(position).getName());
         holder.descriptionItem.setText(Html.fromHtml(items.get(position).getDescription()));
-        holder.priceItem.setText(items.get(position).getPrice().toString());
+        holder.priceItem.setText(items.get(position).getPrice().toString()+" Leke");
         holder.textQuantity.setText(items.get(position).getQuantity().toString());
         holder.image_add_quantity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +64,8 @@ public class AdapterItemsSelected extends RecyclerView.Adapter<AdapterItemsSelec
 
 
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -86,4 +88,5 @@ public class AdapterItemsSelected extends RecyclerView.Adapter<AdapterItemsSelec
             image_remove_quantity=itemView.findViewById(R.id.image_remove_quantity);
         }
     }
+
 }
