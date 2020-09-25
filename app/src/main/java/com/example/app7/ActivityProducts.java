@@ -65,7 +65,6 @@ public class ActivityProducts extends AppCompatActivity implements MakeOrderClic
         textBackButton = findViewById(R.id.textBackButton);
         textBasketQuantity=findViewById(R.id.textBasketQuantity);
         getTotalQuantity();
-
         textBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,6 +72,7 @@ public class ActivityProducts extends AppCompatActivity implements MakeOrderClic
             }
         });
         search_view = (SearchView) findViewById(R.id.search_view);
+
         search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

@@ -14,7 +14,7 @@ import android.widget.TextView;
 public class HyrjaAnim extends AppCompatActivity {
     ImageView imageAnim;
     TextView textRestoranitIm;
-    Animation animationTop,animationBottom;
+    Animation animationBottom;
     private static int HAPJE_ACTIVITY= 3600;
 
     @Override
@@ -23,11 +23,8 @@ public class HyrjaAnim extends AppCompatActivity {
         setContentView(R.layout.activity_hyrja_anim);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        imageAnim=findViewById(R.id.image_anim);
         textRestoranitIm=findViewById(R.id.textRestoranitIm);
-        animationTop= AnimationUtils.loadAnimation(this,R.anim.main_top_anim);
         animationBottom= AnimationUtils.loadAnimation(this,R.anim.main_bottom_anim);
-        imageAnim.setAnimation(animationTop);
         textRestoranitIm.setAnimation(animationBottom);
 
 

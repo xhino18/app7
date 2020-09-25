@@ -58,4 +58,8 @@ dependencies {
     // Annotation processor
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
+    //Lottie
+    def lottieVersion = "3.4.2"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
 }

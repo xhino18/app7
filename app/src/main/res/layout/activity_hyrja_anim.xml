@@ -1,44 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HyrjaAnim"
-    android:background="@drawable/waiter">
+    android:background="@drawable/hyrjemenu">
 
-    <ImageView
-        android:id="@+id/image_anim"
-        android:layout_width="116dp"
-        android:layout_height="66dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="212dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/plate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.709"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/lottie_anim"
+        android:layout_centerHorizontal="true"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/restaurantanimation"
+        app:lottie_loop="true"
+        android:layout_marginTop="120dp">
 
-    </ImageView>
+    </com.airbnb.lottie.LottieAnimationView>
+
 
     <TextView
         android:id="@+id/textRestoranitIm"
-        android:layout_width="213dp"
-        android:layout_height="65dp"
-        android:layout_marginBottom="284dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="184dp"
         android:fontFamily="cursive"
         android:text="@string/restorantiIm"
-        android:textColor="#FFFBFB"
-        android:textSize="36sp"
+        android:textColor="#CA0E00"
+        android:textSize="40dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.919"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/lottie_anim">
 
     </TextView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

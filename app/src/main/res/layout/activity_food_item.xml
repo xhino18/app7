@@ -34,7 +34,9 @@
                 android:layout_toStartOf="@id/imageCart"
                 android:layout_toLeftOf="@id/imageCart"
                 android:focusable="false"
-                android:iconifiedByDefault="true"
+                app:iconifiedByDefault="false"
+                app:searchIcon="@null"
+                android:searchHintIcon="@null"
                 android:queryHint="Search">
 
             </SearchView>
