@@ -13,14 +13,23 @@
         android:layout_height="56dp"
         android:background="#BF000000">
 
-        <TextView
-            android:id="@+id/textBackButton"
+        <ImageView
+            android:id="@+id/imageBackButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginTop="6dp"
-            android:drawableLeft="@drawable/abc_vector_test"
-            android:padding="6dp" />
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/abc_vector_test"
+            android:paddingLeft="5dp"
+            android:paddingRight="10dp"/>
 
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_toStartOf="@id/imageCart"
+    android:layout_toLeftOf="@id/imageCart"
+    android:layout_toEndOf="@id/imageBackButton"
+    android:layout_toRightOf="@id/imageBackButton">
 
 
             <SearchView
@@ -31,15 +40,15 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginRight="10dp"
-                android:layout_toStartOf="@id/imageCart"
-                android:layout_toLeftOf="@id/imageCart"
                 android:focusable="false"
+                android:layout_alignParentRight="true"
                 app:iconifiedByDefault="false"
                 app:searchIcon="@null"
                 android:searchHintIcon="@null"
                 android:queryHint="Search">
 
             </SearchView>
+</RelativeLayout>
 
         <ImageView
             android:id="@+id/imageCart"

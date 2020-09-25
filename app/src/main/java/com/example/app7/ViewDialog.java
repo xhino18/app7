@@ -158,6 +158,11 @@ public class ViewDialog implements AddRemoveQuantityClickInterfce {
         for (int i =0;i<list.size();i++){
         totalquantity=totalquantity+ list.get(i).getQuantity();
         }
+        if(totalquantity==0){
+            cardView_items_selected.setVisibility(View.GONE);
+        }else{
+            cardView_items_selected.setVisibility(View.VISIBLE);
+        }
 
         textBasketQuantity.setText(totalquantity+"");
 

@@ -29,9 +29,9 @@ import retrofit2.Response;
 
 public class ActivityProducts extends AppCompatActivity implements MakeOrderClicked {
     Gson gson;
-    TextView nameItem, descriptionItem, priceItem, textBackButton;
+    TextView nameItem, descriptionItem, priceItem;
     public static TextView textBasketQuantity;
-    ImageView imageView, imageError, imageCart;
+    ImageView imageView, imageError, imageCart,imageBackButton;
     List<ModelItemData> itemList = new ArrayList<>();
     List<OrderItemModel> list = new ArrayList<>();
     AdapterItem adapterItem;
@@ -62,10 +62,10 @@ public class ActivityProducts extends AppCompatActivity implements MakeOrderClic
         cardView_items_selected=findViewById(R.id.cardView_items_selected);
         gson = new GsonBuilder().create();
         dialog = new ProgressDialog(ActivityProducts.this);
-        textBackButton = findViewById(R.id.textBackButton);
+        imageBackButton = findViewById(R.id.imageBackButton);
         textBasketQuantity=findViewById(R.id.textBasketQuantity);
         getTotalQuantity();
-        textBackButton.setOnClickListener(new View.OnClickListener() {
+        imageBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -205,6 +205,11 @@ public class ActivityProducts extends AppCompatActivity implements MakeOrderClic
         list = ItemDatabase.getInstance(this).orderItemDao().getAllItems();
         for (int i =0;i<list.size();i++){
             totalquantity=totalquantity+ list.get(i).getQuantity();
+        }
+        if(totalquantity==0){
+            cardView_items_selected.setVisibility(View.GONE);
+        }else{
+            cardView_items_selected.setVisibility(View.VISIBLE);
         }
         textBasketQuantity.setText(totalquantity+"");
         System.out.println("Quantity controler "+totalquantity);
