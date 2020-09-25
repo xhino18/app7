@@ -13,7 +13,7 @@
         android:id="@+id/recyclerMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="180dp"
         android:paddingBottom="150dp"
         android:paddingLeft="70dp"
         android:layout_marginRight="45dp"
